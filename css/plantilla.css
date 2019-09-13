@@ -1,0 +1,97 @@
+body{
+	margin: auto;
+}
+
+#wrapper{
+	width: 100%;
+}
+
+header{
+	width: 100%;
+	height: 80px;
+	background-color: #007d32;
+	float: left;
+}
+
+#superior{
+	width: 100%;
+	float: left;
+}
+
+#content{
+	width: 100%;
+	float: left;
+}
+
+#content #content2{
+	width: 70%;
+	float: left;
+}
+
+#content #content2 section{
+	width: 100%;
+	float: left;
+}
+
+#content #content2 #inferior{
+	width: 100%;
+	float: left;
+}
+
+#content aside{
+	width: 30%;
+	float: left;
+}
+
+footer{
+	width: 100%;
+	float: left;
+}
+#nav_superior{
+	width: 100%;
+	height: 80%;
+	float: left;
+}
+#nav_superior ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+#nav_superior li {
+  float: left;
+}
+
+#nav_superior li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#nav_superior li a:hover {
+  background-color: #111;
+}
+
+#logo{
+	width: 183px;
+	height: 65%;
+	background-image: url('../image/LynxSpace_.png');
+	float: left;
+}
+#busqueda input[type="text"]{
+	border: 2px solid #acb6ad;
+	border-radius: 4px;
+}
+
+#icono{
+	float: right;
+	width: 115px;
+	height: 90px;
+}
+
+
+
