@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sacramento&display=swap');
 body{
 	margin: auto;
+	font-family: 'Sacramento', cursive;
 }
 
 #wrapper{
@@ -37,15 +40,107 @@ header{
 	width: 100%;
 	float: left;
 }
+.mensaje{
+	background-color: #dda0a2;
+	float: left;
+}
+.encabezado_mensaje{
+	width: 100%;
+	float: left;
+}
+
+.foto_perfil{
+	width: 45px;
+	height: 45px;
+	float: left;
+}
+
+.datos_perfil{
+
+	float: left;
+}
+
+.opciones_mensaje{
+	width: 36px;
+	float: left;
+}
+
+.mensaje{
+	width: 100%;
+	float: left;
+}
+
+.reacciones{
+	width: 100%;
+	float: left;
+}
+
+.reacciones ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.reacciones li {
+  float: left;
+}
+
+.reacciones li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.reacciones li a:hover {
+  background-color: #111;
+}
 
 #content aside{
 	width: 30%;
+	height: 100%;
 	float: left;
+	background-color: white;
 }
 
 footer{
 	width: 100%;
+	height: 400px;
+	background-color: rgb(54,120,68);
 	float: left;
+	color: #FFFFFF;
+}
+
+footer h4{
+  	font-family: 'Handlee', cursive;
+		size: 3em;
+}
+
+footer a{
+	text-decoration: none;
+	list-style: none;
+	color: white;
+}
+
+#primero{
+	width: 40%;
+	float: left;
+	text-align: center;
+}
+
+#segundo{
+	width: 40%;
+	float: left;
+	text-align: center;
+}
+
+#tercero{
+	width: 20%;
+	float: left;
+	text-align: center;
 }
 #nav_superior{
 	width: 100%;
@@ -92,6 +187,3 @@ footer{
 	width: 115px;
 	height: 90px;
 }
-
-
-

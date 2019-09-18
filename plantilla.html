@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<title>Plantilla</title>
@@ -14,7 +14,7 @@
 		<div id="logo"></div>
 		<div id="busqueda"></div>
 			<form>
-				<input type="text" name="busqueda"placeholder="buscar..."/>
+				<input type="text" name="busqueda" placeholder="buscar..."/>
 				<input type="submit" name="enviar_busqueda" value="Buscar">
 			</form>
 		<div id="icono">
@@ -25,42 +25,81 @@
 	</header>
 	<nav id="nav_superior">
 		<ul>
-			<li><a href="index.php">Inicio</li></a>
-			<li><a href="Mensaje.php">Nuevo Mensaje</li></a>
-			<li><a href="foto.php">Subir Foto</li></a>
+			<li><a href="index.php">Inicio</a></li>
+			<li><a href="Mensaje.php">Nuevo Mensaje</a></li>
+			<li><a href="foto.php">Subir Foto</a></li>
 		</ul>
 	</nav>
 	<div id="content">
 		<div id="content2">
 			<section>
-				<article>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-				</article>
-				<article>Articulo2</article>
-				<article>Articulo3</article>
+				<div class="encabezado_mensaje">
+					<div class="foto_perfil"></div>
+						<img src="image/tux.png" width="45" height="45" />
+					<div class="datos_perfil"></div>
+						SHERLOCK
+						<h4>Hace 3 días</h4>
+					<div class="opciones_mensaje"></div>
+						<img src="image/edit.png" width="16" height="16" />
+						<img src="image/cancel.png" width="16" height="16" />
+				</div>
+					<div class="mensaje"></div>
+						Hoy no me queria despertar
+						<img src="image/porque_naci.jpg" width="180" height="200" />
+					<div class="reacciones">
+						<ul>
+							<li><a href="#">Me gusta</a></li>
+							<li><a href="#">No me gusta</a></li>
+							<li><a href="#">Comentario</a></li>
+							<li><a href="#">Compartir</a></li>
+					</div>
 			</section>
-			<nav id="nav_inferior">
-				<ul>
-					<li>Inferior1</li>
-					<li>Inferior2</li>
-					<li>Inferior3</li>
-				</ul>
-			</nav>
+			<section>
+				<div class="encabezado_mensaje">
+					<div class="foto_perfil"></div>
+						<img src="image/tux.png" width="45" height="45" />
+					<div class="datos_perfil"></div>
+						SHERLOCK
+						<h4>Hace 3 días</h4>
+					<div class="opciones_mensaje"></div>
+						<img src="image/edit.png" width="16" height="16" />
+						<img src="image/cancel.png" width="16" height="16" />
+				</div>
+					<div class="mensaje"></div>
+						Hoy no me queria despertar
+						<img src="image/porque_naci.jpg" width="180" height="200" />
+					<div class="reacciones">
+						<ul>
+							<li><a href="#">Me gusta</a></li>
+							<li><a href="#">No me gusta</a></li>
+							<li><a href="#">Comentario</a></li>
+							<li><a href="#">Compartir</a></li>
+					</div>
+			</section>
 		</div>
 			<aside>Yo estoy a un lado</aside>
 	</div>
-	<footer>Yo soy el pie de página</footer>
+	<footer>
+		<div id="primero">
+			<h4>"Menu 1"</h4>
+				<ul>
+					<a href="a"><li>Elemento 1</li></a>
+					<a href="a"><li>Elemento 2</li></a>
+					<a href="a"><li>Elemento 3</li></a>
+					<a href="a"><li>Elemento 4</li></a>
+				</ul>
+		</div>
+		<div id="segundo">
+		<h4>"Menu 2"</h4>
+			<ul>
+				<a href="a"><li>Elemento 1</li></a>
+				<a href="a"><li>Elemento 2</li></a>
+				<a href="a"><li>Elemento 3</li></a>
+				<a href="a"><li>Elemento 4</li></a>
+			</ul>
+		</div>
+		<div id="tercero"></div>
+	</footer>
 </div>
 </body>
 </html>
