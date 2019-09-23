@@ -4,3 +4,13 @@
 .reacciones{
   background-color: lightgray;
 }
+.sprite_rss {
+	background: url('../image/sprite.png') -504 -85px;
+	width: 83px;
+	height: 83px;
+}
+.sprite_youtube {
+	background: url('../image/sprite.png') -504 -85px;
+	width: 83px;
+	height: 83px;
+}
