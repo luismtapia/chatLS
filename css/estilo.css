@@ -1,16 +1,74 @@
 #encabezado{
   background-color: #1B603C;
+  padding-top: 10px;
 }
 .reacciones{
   background-color: lightgray;
 }
+.sprite_icono{
+  transform:scale(1);
+}
+.sprite {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+  /*display: block;*/
+}
 .sprite_rss {
-	background: url('../image/sprite.png') -504 -85px;
-	width: 83px;
-	height: 83px;
+	background: url('../image/Sprite.png') no-repeat -106px -28px;
+	width: 56px;
+	height: 54px;
+  margin-right: 5px;
 }
 .sprite_youtube {
-	background: url('../image/sprite.png') -504 -85px;
-	width: 83px;
-	height: 83px;
+	background: url('../image/Sprite.png') no-repeat -350px -28px;
+	width: 55px;
+	height: 54px;
+  margin-right: 5px;
+}
+.sprite_compartir {
+	background: url('../image/Sprite.png') no-repeat -291px -28px;
+	width: 54px;
+	height: 54px;
+  margin-right: 5px;
+}
+.sprite_notificaciones {
+	background: url('../image/Icono.png') no-repeat -1px 0;
+	width: 30px;
+	height: 32px;
+  margin-right: 5px;
+}
+.sprite_mensaje {
+	background: url('../image/Icono.png') no-repeat -129px 0;
+	width: 32px;
+	height: 32px;
+  margin-right: 5px;
+}
+.sprite_perfil {
+	background: url('../image/Icono.png') no-repeat -64px 0;
+	width: 33px;
+	height: 32px;
+  margin-right: 5px;
+}
+.sprite_animacion:hover{
+  transform: rotate(360deg);
+  transition: ease 2s;
+}
+.sprite_icono:hover{
+  transform:scale(0.8);
+}
+.sprite_editar {
+	background: url('../image/Icono2.png') no-repeat 0 0;
+	width: 16px;
+	height: 16px;
+  margin-right: 5px;
+}
+.sprite_editar:hover {
+	transform: translateX(-10px);
+}
+.sprite_cancelar {
+	background: url('../image/Icono2.png') no-repeat -48px 0;
+	width: 16px;
+	height: 16px;
+  margin-right: 5px;
 }
