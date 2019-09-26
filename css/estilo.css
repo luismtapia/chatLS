@@ -3,7 +3,7 @@
   padding-top: 10px;
 }
 .reacciones{
-  background-color: lightgray;
+  /*background-color: lightgray;*/
 }
 .sprite_icono{
   transform:scale(1);
@@ -74,4 +74,17 @@
 }
 #mensajero{
   background-color: #DDF8D7;
+}
+.pa{
+  padding-bottom: 5px;
+}
+
+
+.card{
+  margin: 20px 0 30px 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+.cuerpo{
+  display: flex;
+  justify-content: center;
 }
