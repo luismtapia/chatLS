@@ -218,7 +218,4 @@ echo "</div>";
 echo "El promedio es:".$promedio/sizeof($alumnos)."<br><br>";
 
 echo "El promedio dije que es: ".$promedio/sizeof($alumnos)."<br><br>";
-
-
-
 ?>

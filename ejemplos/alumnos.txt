@@ -1,0 +1,10 @@
+luis|100
+olivares|10
+sagrario|90
+memo|100
+edgar|78
+jose|100
+joel|100
+samuel|100
+manuel|65
+mirillos|100
