@@ -18,6 +18,7 @@
 		</form>
 
 <?php
+<<<<<<< HEAD
 //CONSULTA DE LA INFORMACION DE MysqlndUhConnection
 $mysqli = new mysqli('localhost', 'nair', '1234', 'alumnos');
 	$resultado = $mysqli->query("select * from alumnos");
@@ -25,6 +26,10 @@ $mysqli = new mysqli('localhost', 'nair', '1234', 'alumnos');
 		$alumnos[$fila['id']]['nombre'] = $fila['nombre'];
 		$alumnos[$fila['id']]['calificacion'] = $fila['calificacion'];
 	}
+=======
+//LECTURA DEL ARCHIVO DE DATOS
+
+>>>>>>> 0c7416bd84030a66ecb90afaa511b7c5010529e0
 //AQUI VA MI NAVBAR DIJE AQUI
 echo '
 <div class="navbar">
@@ -60,15 +65,15 @@ foreach ($alumnos as $id => $alumno) {
 	}
 
 	if ($alumno['calificacion'] >= $colores['reprobado']['minimo'] && $alumno['calificacion'] <= $colores['reprobado']['maximo']){
-		echo "<td>"."<font color='red'>".$alumno['nombre']."</font>"."</td>"."<td>"."<font color='red'>".$alumno['calificacion']."</td>"."</font>"."<br>";
+		echo "<td>"."<font color='red'>".$alumno['nombre']."</font>"."</td>"."<td align='right'>"."<font color='red'>".$alumno['calificacion']."</td>"."</font>"."<br>";
 	}
 
 	if($alumno['calificacion'] >= $colores['regular']['minimo'] && $alumno['calificacion'] <= $colores['regular']['maximo']  ){
-		echo "<td>"."<font color='orange'>".$alumno['nombre']."</font>"."</td>"."<td>"."<font color='orange'>".$alumno['calificacion']."</td>"."</font>"."<br>";
+		echo "<td>"."<font color='orange'>".$alumno['nombre']."</font>"."</td>"."<td align='right'>"."<font color='orange'>".$alumno['calificacion']."</td>"."</font>"."<br>";
 	}
 
 	if($alumno['calificacion'] >= $colores['aprobado']['minimo'] && $alumno['calificacion'] <= $colores['aprobado']['maximo']){
-		echo "<td>"."<font color='green'>".$alumno['nombre']."</font>"."</td>"."<td>"."<font color='green'>".$alumno['calificacion']."</td>"."</font>"."<br>";
+		echo "<td>"."<font color='green'>".$alumno['nombre']."</font>"."</td>"."<td align='right'>"."<font color='green'>".$alumno['calificacion']."</td>"."</font>"."<br>";
 	}
 	for ($i=0; $i <sizeof($alumno) ; $i++) {
 		$promedio=$promedio+$alumno['calificacion'];
