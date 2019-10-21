@@ -19,15 +19,15 @@ $alumnos[1000]['calificacion']=58;
 
 $colores['reprobado']['minimo']=0;
 $colores['reprobado']['maximo']=69;
-$colores['reprobado']['color']=red;
+$colores['reprobado']['color']="red";
 
 $colores['regular']['minimo']=70;
 $colores['regular']['maximo']=84.55;
-$colores['regular']['color']=orange;
+$colores['regular']['color']="orange";
 
 $colores['aprobado']['minimo']=85;
 $colores['aprobado']['maximo']=100;
-$colores['aprobado']['color']=green;
+$colores['aprobado']['color']="green";
 
 
 

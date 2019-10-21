@@ -1,13 +1,6 @@
 <?php
 //LECTURA DEL ARCHIVO DE DATOS
-$archivo=file("alumnos.txt");
-$i=0;
-foreach ($archivo as $linea) {
-	$datos=explode("|",$linea);
-	$alumnos[$i]['nombre']=$datos[0];
-	$alumnos[$i]['calificacion']=(double)$datos[1];
-	$i++;
-}
+
 //AQUI VA MI NAVBAR DIJE AQUI
 echo '
 <div class="navbar">
@@ -45,15 +38,15 @@ foreach ($alumnos as $alumno) {
 	}
 
 	if ($alumno['calificacion'] >= $colores['reprobado']['minimo'] && $alumno['calificacion'] <= $colores['reprobado']['maximo']){
-		echo "<td>"."<font color='red'>".$alumno['nombre']."</font>"."</td>"."<td>"."<font color='red'>".$alumno['calificacion']."</td>"."</font>"."<br>";
+		echo "<td>"."<font color='red'>".$alumno['nombre']."</font>"."</td>"."<td align='right'>"."<font color='red'>".$alumno['calificacion']."</td>"."</font>"."<br>";
 	}
 
 	if($alumno['calificacion'] >= $colores['regular']['minimo'] && $alumno['calificacion'] <= $colores['regular']['maximo']  ){
-		echo "<td>"."<font color='orange'>".$alumno['nombre']."</font>"."</td>"."<td>"."<font color='orange'>".$alumno['calificacion']."</td>"."</font>"."<br>";
+		echo "<td>"."<font color='orange'>".$alumno['nombre']."</font>"."</td>"."<td align='right'>"."<font color='orange'>".$alumno['calificacion']."</td>"."</font>"."<br>";
 	}
 
 	if($alumno['calificacion'] >= $colores['aprobado']['minimo'] && $alumno['calificacion'] <= $colores['aprobado']['maximo']){
-		echo "<td>"."<font color='green'>".$alumno['nombre']."</font>"."</td>"."<td>"."<font color='green'>".$alumno['calificacion']."</td>"."</font>"."<br>";
+		echo "<td>"."<font color='green'>".$alumno['nombre']."</font>"."</td>"."<td align='right'>"."<font color='green'>".$alumno['calificacion']."</td>"."</font>"."<br>";
 	}
 	for ($i=0; $i <sizeof($alumno) ; $i++) {
 		$promedio=$promedio+$alumno['calificacion'];

@@ -8,3 +8,4 @@ joel|100
 samuel|100
 manuel|65
 mirillos|100
+Pablo|0
