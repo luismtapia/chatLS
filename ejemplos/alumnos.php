@@ -1,22 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport">
+<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<title>Document</title>
+</head>
+<body>
+	<h1>Nuevo Alumno</h1>
+		<form method="POST" action="actualizar_alumno.php">
+			<input type="hidden" name="id" value=""<?php echo $fila['id']?> />
+			<label>Nombre</label>
+			<input type="text" name="nombre" value=""<?php echo $alumnos[$fila]['nombre']?> />
+			<label>Calificacion</label>
+			<input type="text" name="calificacion" value=""<?php echo $alumnos[$fila]['nombre']?>/>
+			<input type="submit" name="guardar" value="guardar"/>
+		</form>
+
 <?php
-//LECTURA DEL ARCHIVO DE DATOS
-$archivo=file("alumnos.txt");
-$i=0;
-foreach ($archivo as $linea) {
-	$datos=explode("|",$linea);
-	$alumnos[$i]['nombre']=$datos[0];
-	$alumnos[$i]['calificacion']=(double)$datos[1];
-	$i++;
-}
+//CONSULTA DE LA INFORMACION DE MysqlndUhConnection
+$mysqli = new mysqli('localhost', 'nair', '1234', 'alumnos');
+	$resultado = $mysqli->query("select * from alumnos");
+	while ($fila = $resultado->fetch_assoc()) {
+		$alumnos[$fila['id']]['nombre'] = $fila['nombre'];
+		$alumnos[$fila['id']]['calificacion'] = $fila['calificacion'];
+	}
 //AQUI VA MI NAVBAR DIJE AQUI
 echo '
 <div class="navbar">
 	<a class="btn btn-success" href="nuevo_alumno.html" role="button">Nuevo</a>
 	<a class="btn btn-success" href="alumnos.txt" role="button">Ver txt</a>
 </div>';
-
-
-
 
 //NO MOVER NADA APARTIR DE ESTA LINEA
 
@@ -32,14 +46,15 @@ $colores['regular']['color']="orange";
 $colores['aprobado']['minimo']=85;
 $colores['aprobado']['maximo']=100;
 $colores['aprobado']['color']="green";
-
+echo"<h1>Listado de Calificaciones</h1>"
 echo "<table style='display: flex; justify-content: center;'>";
 echo "<tr>";
 echo "<th>ALUMNO</th>";
 echo "<th>CALIFICACION</th>";
 echo "</tr>";
-foreach ($alumnos as $alumno) {
+foreach ($alumnos as $id => $alumno) {
 	echo "<tr>";
+
 	if (!is_numeric($alumno['calificacion'])){
 		$alumno['calificacion']=0;
 	}
@@ -59,6 +74,8 @@ foreach ($alumnos as $alumno) {
 		$promedio=$promedio+$alumno['calificacion'];
 		$tam=$tam+1;
 	}
+echo "<td><a href='editar_alumno.php?id=$id'><img src='edit.png'/></a></td>";
+echo "<td><a href='eliminar_alumno.php?id=$id'><img src='trash.png'/></a></td>";
 echo "</tr>";
 }
 echo "</table>";
@@ -75,6 +92,8 @@ echo "</table>";
 	if($promedio>=85 && $promedio<=100){
 		echo "El promedio es: <font color='green'>".$promedio."</font>"."<br>";
 	}
+</body>
+</html>
 ?>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
