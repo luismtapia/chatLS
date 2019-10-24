@@ -44,6 +44,29 @@
 			$fecha = $anio.'-'.$mes.'-'.$dia;
 			return $fecha;
 		}
+		function mensaje($id){
+			$this->conexion();
+			$sql = 'SELECT id_mensaje,apodo,id_usuario FROM mensaje INNER JOIN persona ON mensaje.id_persona  WHERE id_mensaje=:id_mensaje';
+			$sentencia = $this->conexion->prepare($sql);
+			$sentencia->bindParam(':id_mensaje',$id);
+			$sentencia->execute();
+			$fila = $sentencia->fetch();
+			print_r($fila);
+			$this->mensaje($fila['id_mensaje']);
+		}
+		function respuesta($id){
+			$this->conexion();
+			$sql = 'SELECT * FROM mensaje INNER JOIN persona ON mensaje.id_persona  WHERE id_respuesta=:id_respuesta';
+			$sentencia = $this->conexion->prepare($sql);
+			$sentencia->bindParam(':id_respuesta',$id);
+			$sentencia->execute();
+			
+			while($fila = $sentencia->fetch()){;
+			$this->respuesta($fila['id_mensaje']);
+			print_r($fila);
+		}
+			
+		}
 	}
 	$sitio = new LynxSpace;
 ?>
