@@ -2,11 +2,11 @@
 	class LynxSpace{
 		var $conexion = null;
 		function __construct(){
-			
+
 		}
 		function conexion(){
 			include('config.php');
-			$this->conexion = new PDO($sgbd.':host='.$bdhost.';dbname='.$bdname, $bdusuario, $bdpassword);
+			$this->conexion = new PDO($sgbd.':host='.$bdhost.';dbname='.$bdname, $bdusuario, $bdcontrasena);
 		}
 		function registro($data){
 			$this->conexion($data);
@@ -26,12 +26,12 @@
 				$sentencia->bindParam(':email', $data['email']);
 				$sentencia->execute();
 				$fila = $sentencia->fetch();
-				
+
 				$sql = 'INSERT INTO persona(nombre, apellidos, apodo, nacimiento, id_usuario) VALUES (:nombre, :apellidos, :apodo, :nacimiento, :id_usuario)';
 				$sentencia = $this->conexion->prepare($sql);
 				$sentencia->bindValue(':nombre', $data['nombre']);
 				$sentencia->bindValue(':apellidos', $data['apellidos']);
-				$sentencia->bindValue(':apodo', $data['apodo']);
+				$sentencia->bindValue(':apodo', $data['nombre']);
 				$sentencia->bindValue(':nacimiento', $fecha);
 				$sentencia->bindValue(':id_usuario', $fila['id_usuario']);
 				$sentencia->execute();
@@ -60,13 +60,13 @@
 			$sentencia = $this->conexion->prepare($sql);
 			$sentencia->bindParam(':id_respuesta',$id);
 			$sentencia->execute();
-			
+
 			while($fila = $sentencia->fetch()){;
 			$this->respuesta($fila['id_mensaje']);
 			print_r($fila);
 		}
-			
-		}
+
+	}
 	}
 	$sitio = new LynxSpace;
 ?>

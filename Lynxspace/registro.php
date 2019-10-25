@@ -1,7 +1,10 @@
 <?php
 	include('lynxspace.class.php');
 	include('config.php');
+	//phpinfo();
+	var_dump($_POST);
 	if (isset($_POST['registrar'])) {
+		var_dump($_POST);
 		$data = $_POST;
 		$sitio->registro($data);
 		die();
@@ -19,37 +22,6 @@
 	<title>LynxSpace - Registrarse</title>
 </head>
 <body>
-<h1>Abre una Cuenta</h1>
-<h3>Es rápido y fácil</h3>
-<form method="POST" action="registro.php">
-	<input type="text" name="nombre" placeholder="Nombre">
-	<input type="text" name="apellidos" placeholder="Apellidos">
-	<input type="text" name="correo_electronico" placeholder="Correo ELectronico">
-	<input type="password" name="contrasena" placeholder="Contraseña">
-
-	<select name="dia" id="dia">
-	<?php
-		for ($i=1; $i<32 ; $i++) {
-			echo "<option value=''$i'>$i</option>";
-		}
-	 ?>
- </select>
- <select name="mes" id="mes">
- 		<?php
-			foreach ($meses as $value=>$mes) {
-				echo "<option value='$value'>$mes</option>";
-			}
-		 ?>
- </select>
- <select name="anio" id="anio">
- 		<?php
-			for ($i=(int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) {
-				 echo "<option value='$i'>$i</option>";
-			}
-		 ?>
- </select>
-	<input type="submit" name="registrar" placeholder="Registrar">
-</form>
 
 <div class="container">
     <div class="row" id="encabezado">
@@ -68,8 +40,9 @@
     <div class="col-sm">
       <h1>Abre una Cuenta</h1>
 	  <h3>Es rápido y fácil</h3>
-		<form method="POST" action="Registro.php">
-			<form>
+		<form method="POST" action="registro.php">
+
+
 			  <div class="form-row">
 			    <div class="col">
 			      <input type="text" class="form-control" name="nombre" placeholder="Nombre">
@@ -78,18 +51,16 @@
 			      <input type="text" class="form-control" name="apellidos" placeholder="Apellidos">
 			    </div>
 			  </div>
-			</form><br>
-			<form>
+
 			  <div class="form-row">
 			    <div class="col">
-			      <input type="text" class="form-control" name="correo_electronico" placeholder="Correo Elentronico">
+			      <input type="text" class="form-control" name="email" placeholder="Correo Elentronico">
 			    </div>
 			    <div class="col">
 			      <input type="text" class="form-control" name="contrasena" placeholder="Contraseña">
 			    </div>
 			  </div>
-			</form><br>
-		    <form>
+
 			  <div class="form-row">
 			    <div class="col">
 			    	<h6>Fecha de Nacimiento</h6>
@@ -118,7 +89,6 @@
 			     <div class="col">
 			    </div>
 			  </div>
-			</form><br>
 			<button type="submit" class="btn btn-outline-success my-2 my-sm-0" name="registrar" value="Registrarse">Registrarte</button>
 		</form>
     </div>
