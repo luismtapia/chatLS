@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+luis|100
+olivares|10
+sagrario|90
+memo|100
+edgar|78
+jose|100
+joel|100
+samuel|100
+manuel|65
+mirillos|100
+=======
+luis|100
+olivares|10
+sagrario|90
+memo|100
+edgar|78
+jose|100
+joel|100
+samuel|100
+manuel|65
+mirillos|100
+>>>>>>> 0c7416bd84030a66ecb90afaa511b7c5010529e0
+Pablo|0
