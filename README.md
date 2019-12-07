@@ -1,2 +1,0 @@
-# chatLS
-proyecto de clase
