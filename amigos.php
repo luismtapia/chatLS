@@ -3,7 +3,7 @@
 	$sitio->validar_rol(array('Usuario','Administrador'));
 	$id_usuario=$_SESSION['id_usuario'];
 	$data=$sitio->persona($id_usuario);
-	$foto=$data['foto']; 
+	$foto=$data['foto'];
 
 	if(isset($_GET['accion'])){
         $accion=$_GET['accion'];
@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lynx-Space | Amigos</title>
+	<title>Amigos</title>
 	<link rel="stylesheet" type="text/css" href="css/all.min.css">
 	<link rel="stylesheet" href="css/bootstrap2.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -68,7 +68,7 @@
 			        				<a class="dropdown-item" href="log_out.php">Salir</a>
 			      				</div>
 			    			</li>
-				   	 	</ul> 
+				   	 	</ul>
 				  	</div>
 				</nav>
 			</div>
@@ -84,7 +84,7 @@
 		<div class="row">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
-				<?php  
+				<?php
 		    		$amigos = $sitio->amigos($_SESSION['id_usuario']);
                     foreach($amigos as $list => $lista){
                         if($lista['foto'])
@@ -107,12 +107,12 @@
                                         <div class="col-sm-12">
                                             <a href="amigos.php?accion=eliminar&id_persona='.$lista['id_persona'].'" class="btn btn-primary">Eliminar</a>
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                         </div>';
                     }
-		        ?>    
+		        ?>
 			</div>
 			<div class="col-sm-2"></div>
 		</div>

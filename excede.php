@@ -21,7 +21,7 @@
 		<header>
 			<h1>
 				<a href="#">
-					<img src="image/Logo.png" alt="Obisidan Food">
+					<img src="image/Logo.png" alt="imagen aqui">
 				</a>
 			</h1>
 		</header>

@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto|Oswald:300,700,400);
+
+html, body {
+  position: relative;
+  background-color: #ffffff;
+  display: flex;
+  font-size: 20px;
+  margin-top: 20px;
+  justify-content: center;
+  font-family:  "Oswald", Arial, sans-serif;
+}
+
+.caja{
+  background-color: #ffffff;
+  border-radius: 15px;
+  width: 350px;
+  height: 550px;
+  box-shadow: 0 15px 24px 10px rgba(27, 96, 60, 0.9);
+  position: relative;
+}
+
+.logo{
+  margin-top: 60px;
+  font-size: 40px;
+  text-align: center;
+  color: #e4bc17;
+}
+
+.iniciar_sesion {
+  padding: 5%;
+}
+
+.form-titulo{
+  margin-top: 15px;
+  margin-bottom: 50px;
+  background-color: #1B603C;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+  -webkit-transform: translate(-10%, 0);
+  height: 45px;
+  padding-top: 15px;
+}
+
+.form-cuerpo{
+  border-radius: 5px;
+  background-color: #afe890;
+  padding: 10px;
+  max-width: 300px;
+}
+
+.form-cuerpo .input{
+  color: #1B603C;
+  border: 0;
+  outline: none;
+  box-shadow: none;
+  //display: block;
+  height: 30px;
+  line-height: 30px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  font-size: 15px;
+}
+
+.botonera{
+  background-color: #1B603C;
+  color: #fff;
+  text-align: center;
+  height: 80px;
+  border-radius: 20% 30% 15px 15px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 0px;
+  -webkit-transition: all .3s ease;
+}
+
+.centrado{
+  text-align: center;
+}
+
+.iconos{
+  margin-top: 30px;
+  color: #ffffff;
+  position: absolute;
+  text-decoration: none;
+}
+
+.boton {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #1B603C;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  -webkit-transition: all .3s ease;
+  box-shadow: 0 2px 25px rgba(221, 248, 215, 0.9);
+}
+
+.boton:hover{
+  background-color: #119251;
+}
+
+
+
+.animacion1 {
+  animation-name: mover-titulo;
+  animation-duration: 2300ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+@keyframes mover-titulo {
+  0% {
+    opacity: 0.9;
+  }
+
+  25% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
+}

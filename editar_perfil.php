@@ -20,7 +20,7 @@
 		die();
 	}
 	$data = $sitio->persona($id_usuario);
-	$foto=$data['foto']; 
+	$foto=$data['foto'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008080;">
-				  	<a href="index.php"><img src="image/Logo.png" width="70" height="50" style="margin-left: 30px;"></a>
+				  	<a href="index.php"><img src="image/Logo.png"  style="margin-left: 30px;"></a>
 					<div class="collapse navbar-collapse" id="navbarColor01" style="margin-right: 90px;">
 				    	<ul class="navbar-nav ml-auto" style="font-size: 17px;">
 				    		<li class="nav-item active">
@@ -73,14 +73,16 @@
 			        				<a class="dropdown-item" href="log_out.php">Salir</a>
 			      				</div>
 			    			</li>
-				   	 	</ul> 
+				   	 	</ul>
 				  	</div>
 				</nav>
 			</div>
 		</div>
+		<br>
+		<!--
 		<div class="row">
 	      	<div class="col-sm-12">
-	      		<h1>Actualiza tus datos.</h1>
+	      		<h1>Perfil</h1>
 	      		<form method="POST" action="editar_perfil.php" enctype="multipart/form-data">
 	      			<div class="form-row">
 						<div class="form-group col-md-6">
@@ -102,7 +104,7 @@
 					    <div class="form-group col-md-4">
 					    	<select name="dia" class="form-control">
 							<?php
-								for ($i = 1; $i < 32 ; $i++) { 
+								for ($i = 1; $i < 32 ; $i++) {
 									echo "<option value = '$i'>$i</option>";
 								}
 							?>
@@ -120,7 +122,7 @@
 						<div class="form-group col-md-4">
 							<select name="anio" class="form-control">
 								<?php
-									for ($i = (int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) { 
+									for ($i = (int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) {
 										echo "<option value = '$i'>$i</option>";
 									}
 								?>
@@ -148,6 +150,104 @@
 	    		</br>
 	    	</div>
 	    </div>
+		-->
 	</div>
+
+
+
+
+
+
+
+    	<div class="container">
+    	  <div class="row">
+    	    <div class="col-sm">
+						</br>
+						<a href="perfil.php?accion=eliminar" class="btn btn-danger">Eliminar mi cuenta</a>
+						</br>
+    	    </div>
+
+    	    <div class="col-sm">
+    	      <h1>Perfil</h1>
+
+
+    			<form method="POST" action="editar_perfil.php" enctype="multipart/form-data">
+    				  <div class="form-row">
+    				    <div class="col">
+    				      <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php echo $data['nombre']; ?>">
+    				    </div>
+    				    <div class="col">
+    				      <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php echo $data['apellidos']; ?>">
+    				    </div>
+    				  </div>
+    					<br>
+
+    					<div class="form-row">
+    				    <div class="col-sm-6">
+    				      <input type="text" class="form-control" name="apodo" placeholder="Apodo" value="<?php echo $data['apodo']; ?>">
+    				    </div>
+    				  </div>
+    					<br>
+
+    				  <div class="form-row">
+    				    <div class="col">
+    				      <input type="text" class="form-control" name="email" placeholder="Correo Elentronico" value="<?php echo $data['email']; ?>">
+    				    </div>
+    				    <div class="col">
+    				      <input type="text" class="form-control" name="contrasena" placeholder="Contraseña" >
+    				    </div>
+    				  </div>
+    					<br>
+
+              <div class="form-row">
+    				    <div class="col">
+                  <div class="form-group">
+                    <label>Foto de perfil</label>
+                    <input type="file" class="form-control-file" name="foto">
+                  </div>
+
+    				    </div>
+    				  </div>
+    					<br>
+
+              <div class="form-row">
+    				    <div class="col">
+    				    	<h6>Fecha de Nacimiento</h6>
+    				      	<select name="dia" id="dia">
+        							<?php
+        								for ($i = 1; $i < 32 ; $i++) {
+        									echo "<option value = '$i'>$i</option>";
+        								}
+        							?>
+        						</select>
+        						<select name="mes">
+        							<?php
+        								foreach ($meses as $value => $mes) {
+        									echo "<option value='$value'>$mes</option>";
+        								}
+        							?>
+        						</select>
+        						<select name="anio">
+        							<?php
+        								for ($i = (int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) {
+        									echo "<option value = '$i'>$i</option>";
+        								}
+        							?>
+        						</select>
+    				     </div>
+    				     <div class="col">
+    				     </div>
+    				  </div>
+    					<br>
+
+      				<button type="submit" class="btn btn-outline-success my-2 my-sm-0" name="actualizar" value="actualizar">Guardar</button>
+      			</form>
+    	    </div>
+    	  </div>
+    	</div>
+
+
+
+
 </body>
 </html>

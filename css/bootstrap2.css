@@ -12,6 +12,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap);
 :root {
   --blue: #2196F3;
   --indigo: #6610f2;
@@ -63,13 +65,13 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.8125rem;
+  font-family: "Oswald", "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
   font-weight: 400;
   line-height: 1.5;
-  color: #444;
+  color: #ffffff;
   text-align: left;
-  background-color: #fff;
+  background-color: #1B603C;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -86,6 +88,7 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  font-family: 'Permanent Marker';
 }
 
 p {
@@ -2123,14 +2126,14 @@ pre code {
 
 .table .thead-dark th {
   color: #fff;
-  background-color: #222;
+  background-color: #026532;
   border-color: #353535;
 }
 
 .table .thead-light th {
-  color: #444;
-  background-color: #eee;
-  border-color: #dee2e6;
+  color: #fff;
+  background-color: #026532;
+  border-color: #026532;/*82f5b9*/
 }
 
 .table-dark {
@@ -10848,7 +10851,7 @@ a.text-dark:hover, a.text-dark:focus {
   }
   .table .thead-dark th {
     color: inherit;
-    border-color: #dee2e6;
+    border-color: #026532;
   }
 }
 

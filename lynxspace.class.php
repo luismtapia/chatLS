@@ -4,7 +4,7 @@
 		var $conexion = null;
 
 		function __construct(){
-			
+
 		}
 
 		function conexion(){
@@ -35,7 +35,7 @@
 				$sentencia->bindParam(':email', $data['email']);
 				$sentencia->execute();
 				$fila = $sentencia->fetch();
-				
+
 				$sql = 'INSERT INTO persona(nombre, apellidos, apodo, nacimiento, id_usuario) VALUES (:nombre, :apellidos, :apodo, :nacimiento, :id_usuario)';
 				$sentencia = $this->conexion->prepare($sql);
 				$sentencia->bindValue(':nombre', $data['nombre']);
@@ -76,7 +76,7 @@
 				$_SESSION['privilegios'] = $this->privilegio($_SESSION['roles']);
 				header('Location: index.php');
 			}else{
-				$this->logout();
+				$this->log_out();
 				header('Location: log_out.php?code=0');
 			}
 		}
@@ -157,17 +157,17 @@
                 $sentencia = $this->conexion->prepare($sql);
                 $sentencia->bindValue(':id_persona', $id);
                 $sentencia->execute();
-    
+
                 $sql = 'DELETE FROM amistad WHERE id_persona=:id_persona or id_amigo=:id_persona';
                 $sentencia = $this->conexion->prepare($sql);
                 $sentencia->bindValue(':id_persona', $id);
                 $sentencia->execute();
-    
+
                 $sql = 'DELETE FROM persona WHERE id_persona=:id_persona';
                 $sentencia = $this->conexion->prepare($sql);
                 $sentencia->bindValue(':id_persona', $id);
                 $sentencia->execute();
-    
+
                 $sql = 'DELETE FROM usuario WHERE id_usuario=:id_persona';
                 $sentencia = $this->conexion->prepare($sql);
                 $sentencia->bindValue(':id_persona', $id);
@@ -176,11 +176,11 @@
                 if(file_exists($url)){
                     unlink($url);
                 }
-                
+
             }catch(PDOException $e){
                 $this->conexion->rollBack();
             }
-          
+
         }
 
         function editar_perfil($data){
@@ -197,10 +197,10 @@
                                 $this->conexion->beginTransaction();
                                 $fecha=$this->fecha($data['dia'],$data['mes'],$data['anio']);
                                 try {
-                                    $sql="UPDATE persona 
+                                    $sql="UPDATE persona
                                     SET email=:email,contrasena=:contrasena where id_usuario=:id_usuario";
                                     $sentencia=$this->conexion->prepare($sql);
-                                    $contrasena=md5($data['contrasena']);    
+                                    $contrasena=md5($data['contrasena']);
                                     $sentencia->bindParam(':email', $data['email']);
                                     $sentencia->bindParam(':contrasena',$contrasena);
                                     $sentencia->bindParam(':id_usuario',$data['id_usuario']);
@@ -208,15 +208,15 @@
 
                                     $fp = fopen($destino, 'rb');
                                     $sql='UPDATE persona set nombre = :nombre, apellidos = :apellidos, nacimiento = :nacimiento, apodo = :apodo, foto = :foto, foto2=:foto2  WHERE id_usuario = :id_usuario';
-                                        
-                                   $sentencia=$this->conexion->prepare($sql);     
+
+                                   $sentencia=$this->conexion->prepare($sql);
                                    $sentencia->bindParam(':nombre', $data['nombre']);
                                    $sentencia->bindParam(':apellidos', $data['apellidos']);
                                    $sentencia->bindParam(':apodo', $data['apodo']);
                                    $sentencia->bindParam(':id_usuario', $data['id_usuario']);
                                    $sentencia->bindValue(':nacimiento', $fecha);
                                    $sentencia->bindParam(':foto2',$fp,PDO::PARAM_LOB);
-                                   $sentencia->bindParam(':foto',$archivo);                              
+                                   $sentencia->bindParam(':foto',$archivo);
                                    $sentencia->execute();
                                    $this->conexion->commit();
                                    header('Location: index.php');
@@ -226,7 +226,7 @@
                             }
                             else
                                 header('Location: editar_perfil.php');
-                        }else header('Location: excede.php');      
+                        }else header('Location: excede.php');
                 }else header('Location: tipo.php');
             }else
                 header('Location: administrador.php');
@@ -376,7 +376,7 @@
 
         function borrar_rol($id_rol){
             $this->conexion();
-            
+
             $sql = 'DELETE FROM rol_privilegio WHERE id_rol = :id_rol';
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(':id_rol', $id_rol);
@@ -420,7 +420,7 @@
 
         function borrar_privilegio($id_privilegio){
             $this->conexion();
-            
+
             $sql = 'DELETE FROM rol_privilegio WHERE id_privilegio = :id_privilegio';
             $sentencia = $this->conexion->prepare($sql);
             $sentencia->bindParam(':id_privilegio', $id_privilegio);
@@ -485,20 +485,26 @@
             $sentencia->bindParam(':id_mensaje', $id);
             $sentencia->execute();
             $fila=$sentencia->fetch();
-            echo '<div class="card">
-            	 <div class="card-header">'.
-                 $fila['nombre'].' '.$fila['apellidos'].'    |    '.$fila['fecha'].'
-                 </div>
-                 <div class="card-body">
-                 <p class="card-text">'.$fila['mensaje'].'    </br>'.$this->pulgares($fila['id_mensaje']).'</p>
-                 <ul class="list-group list-group-flush">';
+            echo '
+            <div class="card" style="width: 45rem;">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-12 sprite">
+                      <div class="sprite_editar"></div>
+                      <div class="sprite_cancelar"></div>
+                  </div>
+                </div>
+                     <h2 class="card-title"><img src="image/tux.png" width="45" height="45"/>'.$fila['nombre'].' '.$fila['apellidos'].'</h2>
+                     <h6 class="card-subtitle mb-2 text-muted">'.$fila['fecha'].'</h6>
+                     <div class="row cuerpo">
+                        <p class="card-text">'.$fila['mensaje'].'    </br>'.$this->pulgares($fila['id_mensaje']).'</p><br>
+                        <ul class="list-group list-group-flush">';
             $this->respuesta($fila['id_mensaje']);
-            echo' </ul>
-                  </div>
-                  </div>
-                  </br>';
+            echo'       </ul>
+                     </div>
+              </div>';
         }
-        
+
         function respuesta($id){
             $mensaje=array();
             $i = 0;
@@ -509,7 +515,7 @@
             $sentencia->execute();
             while($fila=$sentencia->fetch()){
             	echo '<li class="list-group-item">'.$fila['mensaje'].'    '.$this->pulgares($fila['id_mensaje']).'</li>';
-                $this->respuesta($fila['id_mensaje']);                    
+                $this->respuesta($fila['id_mensaje']);
             }
         }
 
@@ -521,7 +527,7 @@
 	        $sentencia->execute();
 	        $fila=$sentencia->fetch();
 	        $pulgar='           '.$fila['numero'].'  <a href="index.php?accion=reaccion&reaccion=1&id_mensaje='.$id_mensaje.'"><img src="image/like.png" width="16" height="16"></a>';
-	        
+
 	        $sql = "SELECT  * from reaccion where id_mensaje=:id_mensaje and id_persona=:id_persona";
 	        $sentencia=$this->conexion->prepare($sql);
 	        $sentencia->bindValue(":id_mensaje",$id_mensaje);
@@ -551,18 +557,18 @@
                         $sentencia->bindValue(':id_mensaje', $id_mensaje);
                         $sentencia->execute();
                     }
-                break;  
+                break;
                 case 0:
-                    default: 
+                    default:
                         $sql='DELETE from reaccion where id_persona=:id_persona and id_mensaje=:id_mensaje';
                         $sentencia = $this->conexion->prepare($sql);
                         $sentencia->bindValue(':id_persona', $_SESSION['id_usuario']);
                         $sentencia->bindValue(':id_mensaje', $id_mensaje);
                         $sentencia->execute();
-                break;  
+                break;
             }
         }
-    
+
         function indice(){
            $i=0;
            $mensaje=array();
@@ -616,7 +622,7 @@
                 $amigos[$fila["id_persona"]] = $fila;
             }
             return $amigos;
-    
+
         }
 
         function eliminar_amigo($id_amigo){
@@ -636,15 +642,15 @@
                $sentencia=$this->conexion->prepare($sql);
                $sentencia->bindParam(":id_persona",$_SESSION['id_usuario']);
                $sentencia->bindParam(":id_amigo",$id_amigo);
-               $sentencia->execute();   
+               $sentencia->execute();
                $this->conexion->commit();
-            } 	
+            }
             catch (Exception $e) {
                 $this->conexion->rollBack();
             }
         }
 
-        
+
 
 	}
 
