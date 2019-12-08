@@ -1,0 +1,24 @@
+.cajas{
+	color: #ffffff;
+	font-family: "Oswald" sans-serif;
+	border-radius: 5px;
+	background-color: #1B603C;
+	box-shadow: 0 15px 24px 10px rgba(27, 96, 60, 0.9);
+	margin: 20px 80px 30px 80px;
+}
+.cajas2{
+	color: #000000;
+	font-family: "Oswald" sans-serif;
+	border-radius: 5px;
+	background-color: #1B603C;
+	box-shadow: 0 15px 24px 10px rgba(27, 96, 60, 0.9);
+	margin: 20px 80px 20px 80px;
+}
+h1{
+	color: #ffffff;
+}
+.cuerpo{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}

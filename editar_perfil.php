@@ -25,7 +25,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lynx-Space | Editar Perfil</title>
+	<title>Editar Perfil</title>
 	<link rel="stylesheet" type="text/css" href="css/all.min.css">
 	<link rel="stylesheet" href="css/bootstrap2.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -33,52 +33,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="css/cajas.css">
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008080;">
-				  	<a href="index.php"><img src="image/Logo.png"  style="margin-left: 30px;"></a>
-					<div class="collapse navbar-collapse" id="navbarColor01" style="margin-right: 90px;">
-				    	<ul class="navbar-nav ml-auto" style="font-size: 17px;">
-				    		<li class="nav-item active">
-				    			<a class="nav-link" href="index.php">
-							  	<?php
-								if (is_null($data['foto'])) {
-									echo "<img src='uploads/default.png' height='30' width='30' class='rounded-circle'>";
-								}else{
-									echo "<img src='uploads/$foto' height='30' width='30' class='rounded-circle'>";
-								}
-								?>
-								<?php echo $data['nombre']." ".$data['apellidos']." (".$data['apodo'].")"; ?>
-								</a>
-				    		</li>
-					      	<li class="nav-item active">
-					        	<a class="nav-link" href="index.php">Inicio</a>
-					      	</li>
-					      	<li class="nav-item">
-			    				<a class="nav-link" href="amigos.php">Amigos</a>
-			  				</li>
-					      	<li class="nav-item">
-			    				<a class="nav-link" href="sugerencias.php">Sugerencias</a>
-			  				</li>
-					      	<li class="nav-item dropdown">
-			      				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Opciones
-			      				</a>
-			      				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			      					<a class="dropdown-item" href="editar_perfil.php">Editar Perfil</a>
-			        				<a class="dropdown-item" href="seguridad.php">Roles y Privilegios</a>
-			        				<a class="dropdown-item" href="admi_seguridad.php">Administrador</a>
-			        				<a class="dropdown-item" href="log_out.php">Salir</a>
-			      				</div>
-			    			</li>
-				   	 	</ul>
-				  	</div>
-				</nav>
-			</div>
-		</div>
-		<br>
+		<?php include 'menu.php'; ?>
 		<!--
 		<div class="row">
 	      	<div class="col-sm-12">
@@ -159,91 +119,90 @@
 
 
 
-    	<div class="container">
-    	  <div class="row">
-    	    <div class="col-sm">
-						</br>
-						<a href="perfil.php?accion=eliminar" class="btn btn-danger">Eliminar mi cuenta</a>
-						</br>
-    	    </div>
+    	<div class="cajas">
+    		<div class="cajas">
+    			<div class="row">
+	    	    <div class="col-sm">
+							</br>
+							<a href="perfil.php?accion=eliminar" class="btn btn-danger">Eliminar mi cuenta</a>
+							</br>
+	    	    </div>
 
-    	    <div class="col-sm">
-    	      <h1>Perfil</h1>
+	    	    <div class="col-sm">
+	    	      <h1>Perfil</h1>
+	    			<form method="POST" action="editar_perfil.php" enctype="multipart/form-data">
+	    				  <div class="form-row">
+	    				    <div class="col">
+	    				      <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php echo $data['nombre']; ?>">
+	    				    </div>
+	    				    <div class="col">
+	    				      <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php echo $data['apellidos']; ?>">
+	    				    </div>
+	    				  </div>
+	    					<br>
 
+	    					<div class="form-row">
+	    				    <div class="col-sm-6">
+	    				      <input type="text" class="form-control" name="apodo" placeholder="Apodo" value="<?php echo $data['apodo']; ?>">
+	    				    </div>
+	    				  </div>
+	    					<br>
 
-    			<form method="POST" action="editar_perfil.php" enctype="multipart/form-data">
-    				  <div class="form-row">
-    				    <div class="col">
-    				      <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php echo $data['nombre']; ?>">
-    				    </div>
-    				    <div class="col">
-    				      <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" value="<?php echo $data['apellidos']; ?>">
-    				    </div>
-    				  </div>
-    					<br>
+	    				  <div class="form-row">
+	    				    <div class="col">
+	    				      <input type="text" class="form-control" name="email" placeholder="Correo Elentronico" value="<?php echo $data['email']; ?>">
+	    				    </div>
+	    				    <div class="col">
+	    				      <input type="text" class="form-control" name="contrasena" placeholder="Contraseña" >
+	    				    </div>
+	    				  </div>
+	    					<br>
 
-    					<div class="form-row">
-    				    <div class="col-sm-6">
-    				      <input type="text" class="form-control" name="apodo" placeholder="Apodo" value="<?php echo $data['apodo']; ?>">
-    				    </div>
-    				  </div>
-    					<br>
+	                <div class="form-row">
+	    				<div class="col">
+							<div class="form-group">
+								<label>Foto de perfil</label>
+								<input type="file" class="form-control-file" name="foto">
+							</div>
+	    				</div>
+	    			</div>
+	    			<br>
 
-    				  <div class="form-row">
-    				    <div class="col">
-    				      <input type="text" class="form-control" name="email" placeholder="Correo Elentronico" value="<?php echo $data['email']; ?>">
-    				    </div>
-    				    <div class="col">
-    				      <input type="text" class="form-control" name="contrasena" placeholder="Contraseña" >
-    				    </div>
-    				  </div>
-    					<br>
+	              <div class="form-row">
+	    				    <div class="col">
+	    				    	<h6>Fecha de Nacimiento</h6>
+	    				      	<select name="dia" id="dia">
+	        							<?php
+	        								for ($i = 1; $i < 32 ; $i++) {
+	        									echo "<option value = '$i'>$i</option>";
+	        								}
+	        							?>
+	        						</select>
+	        						<select name="mes">
+	        							<?php
+	        								foreach ($meses as $value => $mes) {
+	        									echo "<option value='$value'>$mes</option>";
+	        								}
+	        							?>
+	        						</select>
+	        						<select name="anio">
+	        							<?php
+	        								for ($i = (int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) {
+	        									echo "<option value = '$i'>$i</option>";
+	        								}
+	        							?>
+	        						</select>
+	    				    </div>
+	    				    <div class="col">
+	    				    </div>
+	    				  </div>
+	    					<br>
 
-              <div class="form-row">
-    				    <div class="col">
-                  <div class="form-group">
-                    <label>Foto de perfil</label>
-                    <input type="file" class="form-control-file" name="foto">
-                  </div>
-
-    				    </div>
-    				  </div>
-    					<br>
-
-              <div class="form-row">
-    				    <div class="col">
-    				    	<h6>Fecha de Nacimiento</h6>
-    				      	<select name="dia" id="dia">
-        							<?php
-        								for ($i = 1; $i < 32 ; $i++) {
-        									echo "<option value = '$i'>$i</option>";
-        								}
-        							?>
-        						</select>
-        						<select name="mes">
-        							<?php
-        								foreach ($meses as $value => $mes) {
-        									echo "<option value='$value'>$mes</option>";
-        								}
-        							?>
-        						</select>
-        						<select name="anio">
-        							<?php
-        								for ($i = (int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) {
-        									echo "<option value = '$i'>$i</option>";
-        								}
-        							?>
-        						</select>
-    				     </div>
-    				     <div class="col">
-    				     </div>
-    				  </div>
-    					<br>
-
-      				<button type="submit" class="btn btn-outline-success my-2 my-sm-0" name="actualizar" value="actualizar">Guardar</button>
-      			</form>
-    	    </div>
-    	  </div>
+	      				<button type="submit" class="btn btn-success my-2 my-sm-0" name="actualizar" value="actualizar">Guardar</button>
+	      			</form>
+	    	    </div>
+	    	  </div>
+    		</div>
     	</div>
 
 

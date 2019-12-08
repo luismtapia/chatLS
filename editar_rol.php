@@ -16,7 +16,7 @@
 ?>
 <html>
 <head>
-    <title>Lynx-Space | Editar Rol</title>
+    <title>Editar Rol</title>
     <link rel="stylesheet" type="text/css" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap2.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -24,6 +24,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="css/cajas.css">
 </head>
 <body>
     <div class="container">
@@ -46,17 +48,16 @@
                                 </a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.php">Inicio</a>
+                                <a class="nav-link" href="index.php" title="Inicio"><i class="material-icons">home</i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="amigos.php">Amigos</a>
+                                <a class="nav-link" href="amigos.php" title="Amigos"><i class="material-icons">group</i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="sugerencias.php">Sugerencias</a>
+                                <a class="nav-link" href="sugerencias.php" title="Sugerencias"><i class="material-icons">supervisor_account</i></a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Opciones
-                                </a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Opciones"><i class="material-icons">list</i></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="editar_perfil.php">Editar Perfil</a>
                                     <a class="dropdown-item" href="seguridad.php">Roles y Privilegios</a>
@@ -69,20 +70,29 @@
                 </nav>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>Editar Rol.</h1>
-                <form method="POST" action="editar_rol.php" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>Rol</label>
-                        <input type="text" class="form-control" placeholder="Descripcion del rol" name="rol" value="<?php echo $data['rol']; ?>">
+
+        <div class="cajas">
+            <div class="cajas">
+                <div class="">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="cuerpo">
+                                <h1>Editar Rol</h1>
+                            </div>
+                            <form method="POST" action="editar_rol.php" enctype="multipart/form-data" >
+                                <div class="form-group">
+                                    <label>Rol</label>
+                                    <input type="text" class="form-control" placeholder="Descripcion del rol" name="rol" value="<?php echo $data['rol']; ?>">
+
+                                </div>
+                                <input type="submit" name="editar_rol" value="Confirmar" class="btn btn-success btn-lg"/>
+                            </form>
+                            </br>
+                        </div>
                     </div>
-                    <input type="submit" name="editar_rol" value="Confirmar" class="btn btn-primary btn-lg btn-block"/>
-                </form>
-                </br>
-                </br>
+                </div>
             </div>
-        </div>
+        </div>   
     </div>
 </body>
 </html>

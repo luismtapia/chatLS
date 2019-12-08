@@ -28,48 +28,8 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008080;">
-				  	<a href="index.php"><img src="image/Logo.png" style="margin-left: 30px;" alt="logo"></a>
-					<div class="collapse navbar-collapse" id="navbarColor01" style="margin-right: 90px;">
-				    	<ul class="navbar-nav ml-auto" style="font-size: 17px;">
-				    		<li class="nav-item active">
-				    			<a class="nav-link" href="index.php">
-							  	<?php
-								if (is_null($data['foto'])) {
-									echo "<img src='uploads/default.png' height='30' width='30' class='rounded-circle' alt='imagen_perfil'>";
-								}else{
-									echo "<img src='uploads/$foto' height='30' width='30' class='rounded-circle' alt='imagen_perfil'>";
-								}
-								?>
-								<?php echo $data['nombre']." ".$data['apellidos']." (".$data['apodo'].")"; ?>
-								</a>
-				    		</li>
-					      	<li class="nav-item active">
-					        	<a class="nav-link" href="index.php">Inicio</a>
-					      	</li>
-					      	<li class="nav-item">
-			    				<a class="nav-link" href="amigos.php">Amigos</a>
-			  				</li>
-					      	<li class="nav-item">
-			    				<a class="nav-link" href="sugerencias.php">Sugerencias</a>
-			  				</li>
-					      	<li class="nav-item dropdown">
-			      				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Opciones
-			      				</a>
-			      				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			      					<a class="dropdown-item" href="editar_perfil.php">Editar Perfil</a>
-			        				<a class="dropdown-item" href="seguridad.php">Roles y Privilegios</a>
-			        				<a class="dropdown-item" href="admi_seguridad.php">Administrador</a>
-			        				<a class="dropdown-item" href="log_out.php">Salir</a>
-			      				</div>
-			    			</li>
-				   	 	</ul>
-				  	</div>
-				</nav>
-			</div>
-		</div>
+		<?php include 'menu.php'; ?>
+    </br>
 		</br>
 		<div class="row">
 			<div class="col-sm-12">
@@ -79,7 +39,7 @@
                             <input type="text" class="form-control" placeholder="¿Que piensas?" name="mensaje">
                         </div>
                         <div class="form-group col-md-4">
-                            <input type="submit" name="enviar" value="Publicar" class="btn btn-dark btn-block">
+                            <input type="submit" name="enviar" value="Publicar" class="btn btn-warning btn-block">
                         </div>
                     </div>
                 </form>

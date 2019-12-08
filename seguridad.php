@@ -8,89 +8,50 @@
 <html>
 <head>
 	<title>Seguridad</title>
-	<link rel="stylesheet" type="text/css" href="css/all.min.css">
-
+	<link rel="stylesheet" href="css/bootstrap2.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
-	<link rel="stylesheet" href="css/bootstrap2.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="css/cajas.css">
 </head>
 <body>
 	<div class="container" >
-		<div class="row">
-			<div class="col-sm-12">
-				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008080;">
-				  	<a href="index.php"><img src="image/Logo.png" style="margin-left: 30px;" alt="logo"></a>
-					<div class="collapse navbar-collapse" id="navbarColor01" style="margin-right: 90px;">
-				    	<ul class="navbar-nav ml-auto" style="font-size: 17px;">
-				    		<li class="nav-item active">
-				    			<a class="nav-link" href="index.php">
-							  	<?php
-								if (is_null($data['foto'])) {
-									echo "<img src='uploads/default.png' height='30' width='30' class='rounded-circle' alt='imagen_perfil'>";
-								}else{
-									echo "<img src='uploads/$foto' height='30' width='30' class='rounded-circle' alt='imagen_perfil'>";
-								}
-								?>
-								<?php echo $data['nombre']." ".$data['apellidos']." (".$data['apodo'].")"; ?>
-								</a>
-				    		</li>
-					      	<li class="nav-item active">
-					        	<a class="nav-link" href="index.php">Inicio</a>
-					      	</li>
-					      	<li class="nav-item">
-			    				<a class="nav-link" href="amigos.php">Amigos</a>
-			  				</li>
-					      	<li class="nav-item">
-			    				<a class="nav-link" href="sugerencias.php">Sugerencias</a>
-			  				</li>
-					      	<li class="nav-item dropdown">
-			      				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Opciones
-			      				</a>
-			      				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			      					<a class="dropdown-item" href="editar_perfil.php">Editar Perfil</a>
-			        				<a class="dropdown-item" href="seguridad.php">Roles y Privilegios</a>
-			        				<a class="dropdown-item" href="admi_seguridad.php">Administrador</a>
-			        				<a class="dropdown-item" href="log_out.php">Salir</a>
-			      				</div>
-			    			</li>
-				   	 	</ul>
-				  	</div>
-				</nav>
-			</div>
-		</div>
-		</br>
-		<div class="row">
-			<div class="col-sm-4"></div>
-			<div class="col-sm-4" align="center">
-				<h1>Seguridad</h1>
-			</div>
-			<div class="col-sm-4"></div>
-			<br>
-		</div>
-		<br><br>
-		<div class="row">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-5">
-				<label>Usted cuenta con los siguientes roles:</label>
-				</br>
-						<?php
-		    				$sitio->rol_asignado($id_usuario);
-		        ?>
-		        <br>
-			</div>
-			<div class="col-sm-1"></div>
-			<div class="col-sm-5">
-		        <label>Y sus privilegios son:</label>
-		        </br>
-				<?php
-		    		$sitio->privilegio_asignado($id_usuario);
-		        ?>
-			</div>
-			<div class="col-sm-2"></div>
-		</div>
+		<?php include 'menu.php'; ?>
 	</div>
+	<div class="cajas">
+			<div class="cajas">
+				<div class="row">
+					<div class="col-sm-4"></div>
+					<div class="col-sm-4" align="center">
+						<h1>Seguridad</h1>
+					</div>
+					<div class="col-sm-4"></div>
+					<br>
+				</div>
+				<br><br>
+				<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-5">
+						<label>Roles:</label>
+						</br>
+								<?php
+				    				$sitio->rol_asignado($id_usuario);
+				        ?>
+				        <br>
+					</div>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-5">
+				        <label>Privilegios:</label>
+				        </br>
+						<?php
+				    		$sitio->privilegio_asignado($id_usuario);
+				        ?>
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>

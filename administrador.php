@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<title>Obsidian Food | Log-out</title>
+	<title>Log-out</title>
 </head>
 <body>
 	<div class="container">
 		<header>
 			<h1>
 				<a href="#">
-					<img src="image/Logo.png" alt="Obisidan Food">
+					<img src="image/Logo.png" alt="Lynxspace">
 				</a>
 			</h1>
 		</header>
