@@ -12,6 +12,10 @@
                 $sitio->eliminar_amigo($_GET['id_persona']);
                 header("Location: amigos.php");
             break;
+            case 'historial':
+                //$sitio->eliminar_amigo($_GET['id_persona']);
+                //header("Location: amigos.php");// ver historial
+            header("Location: historial.php");
             default:
             break;
         }
@@ -68,8 +72,11 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-5">
                                                 <a href="amigos.php?accion=eliminar&id_persona='.$lista['id_persona'].'" class="btn btn-primary">Eliminar</a>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <a href="amigos.php?accion=historial&id_persona='.$lista['id_persona'].'" class="btn btn-warning">Historial</a>
                                             </div>
                                         </div>
                                     </div>

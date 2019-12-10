@@ -1,5 +1,8 @@
 <?php
     session_start();
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+
 	class LynxSpace{
 		var $conexion = null;
 
@@ -191,7 +194,8 @@
                             $tipo=explode("/",$_FILES['foto']['type']);
                             $archivo=$data['id_usuario'].'_'.md5(rand(0,1000000000)).".".$tipo[1];
                             $origen=$_FILES['foto']['tmp_name'];
-                            $destino='/var/www/html/Lynx-Space/uploads/'.$archivo;
+                            //$destino='/var/www/html/treze/chatLS/uploads/'.$archivo;
+                            $destino='uploads/'.$archivo;
                             if(move_uploaded_file($origen,$destino)){
                                 $this->conexion();
                                 $this->conexion->beginTransaction();
@@ -208,7 +212,6 @@
 
                                     $fp = fopen($destino, 'rb');
                                     $sql='UPDATE persona set nombre = :nombre, apellidos = :apellidos, nacimiento = :nacimiento, apodo = :apodo, foto = :foto, foto2=:foto2  WHERE id_usuario = :id_usuario';
-
                                    $sentencia=$this->conexion->prepare($sql);
                                    $sentencia->bindParam(':nombre', $data['nombre']);
                                    $sentencia->bindParam(':apellidos', $data['apellidos']);
@@ -476,8 +479,8 @@
             $sentencia->execute();
         }
 
-		//MENSAJES
-		function mensaje($id){
+        //MENSAJES
+        function mensaje($id){
             $this->conexion();
             $aux = "";
             $sql = 'SELECT * FROM mensaje inner join persona on mensaje.id_persona=persona.id_persona WHERE id_mensaje=:id_mensaje';
@@ -485,24 +488,33 @@
             $sentencia->bindParam(':id_mensaje', $id);
             $sentencia->execute();
             $fila=$sentencia->fetch();
-            echo '
-            <div class="card" style="width: 45rem;">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-12 sprite">
-                      <div class="sprite_editar"></div>
-                      <div class="sprite_cancelar"></div>
-                  </div>
-                </div>
-                     <h2 class="card-title"><img src="image/tux.png" width="45" height="45"/>'.$fila['nombre'].' '.$fila['apellidos'].'</h2>
-                     <h6 class="card-subtitle mb-2 text-muted">'.$fila['fecha'].'</h6>
-                     <div class="row cuerpo">
-                        <p class="card-text">'.$fila['mensaje'].'    </br>'.$this->pulgares($fila['id_mensaje']).'</p><br>
-                        <ul class="list-group list-group-flush">';
-            $this->respuesta($fila['id_mensaje']);
-            echo'       </ul>
-                     </div>
-              </div>';
+            echo    '<div class="card border-success">
+                        <div class="card-header text-white color_verde">'.
+                            $fila['nombre'].' '.$fila['apellidos'].'    |    '.$fila['fecha'].'
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">'.$fila['mensaje'].'    </br>'.$this->pulgares($fila['id_mensaje']).'</p>
+                            <ul class="list-group list-group-flush">';
+                                $this->respuesta($fila['id_mensaje']);
+                            echo' </ul>
+                            </br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form method="GET" action="index.php">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-10">
+                                                <input type="text" class="form-control" placeholder="Comentar" name="mensaje">
+                                                <input type="hidden" name="id_mensaje" value="'.$id.'" >
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <input type="submit" href="index.php" name="respuesta" value="Enviar" class="btn btn-warning btn-block">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
         }
 
         function respuesta($id){
@@ -517,6 +529,17 @@
             	echo '<li class="list-group-item">'.$fila['mensaje'].'    '.$this->pulgares($fila['id_mensaje']).'</li>';
                 $this->respuesta($fila['id_mensaje']);
             }
+        }
+
+        function responder($mensaje, $id_respuesta){
+            $this->conexion();
+            $sql= 'INSERT INTO mensaje (id_persona, fecha, mensaje, id_respuesta) VALUES (:id_persona,now(),:mensaje, :id_respuesta)';
+            $sentencia=$this->conexion->prepare($sql);
+            $sentencia->bindParam(':id_persona', $_SESSION['id_persona']);
+            $sentencia->bindParam(':mensaje', $mensaje);
+            $sentencia->bindParam(':id_respuesta', $id_respuesta);
+            $sentencia->execute();
+            header('Location: index.php');
         }
 
         function pulgares($id_mensaje){
@@ -594,7 +617,7 @@
             header('Location: index.php');
         }
 
-        //AMIGOS
+//AMIGOS
         function amigos($id_persona){
             $this->conexion();
             $amigos=array();
@@ -638,20 +661,46 @@
             $this->conexion();
             $this->conexion->beginTransaction();
             try {
-               $sql = 'INSERT INTO amistad (id_persona,id_amigo,fecha) VALUES(:id_persona,:id_amigo,now())';
-               $sentencia=$this->conexion->prepare($sql);
-               $sentencia->bindParam(":id_persona",$_SESSION['id_usuario']);
-               $sentencia->bindParam(":id_amigo",$id_amigo);
-               $sentencia->execute();
-               $this->conexion->commit();
-            }
+                $sql = 'INSERT INTO amistad (id_persona, id_amigo, fecha) VALUES(:id_persona, :id_amigo, now())';
+                $sentencia=$this->conexion->prepare($sql);
+                $sentencia->bindParam(":id_persona",$_SESSION['id_usuario']);
+                $sentencia->bindParam(":id_amigo",$id_amigo);
+                $sentencia->execute(); 
+
+                $sql = 'SELECT * FROM usuario INNER JOIN persona ON usuario.id_usuario = persona.id_usuario INNER JOIN amistad ON persona.id_persona = amistad.id_amigo WHERE id_amigo = :id_amigo';
+                $sentencia=$this->conexion->prepare($sql);
+                $sentencia->bindParam(":id_amigo", $id_amigo);
+                $sentencia->execute();
+                $amigo = $sentencia->fetch();
+                $this->correoAmistad($amigo['email'],'Te agregaron como amigo','Lynx-Space: Nueva Amistad',$amigo['nombre']);
+                $this->conexion->commit();
+            }   
             catch (Exception $e) {
                 $this->conexion->rollBack();
             }
         }
 
-
-
+        function correoAmistad($destino, $mensaje, $asunto, $nombre){
+            require 'vendor/autoload.php';
+            $mail = new PHPMailer;
+            $mail->isSMTP();
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 587;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->SMTPAuth = true;
+            $mail->Username = '14030706@itcelaya.edu.mx';//de donde se manda
+            $mail->Password = 'svirus94';//contraseña
+            $mail->setFrom('14030706@itcelaya.edu.mx', 'Lynx-Space');//quien manda
+            $mail->addAddress($destino, $nombre);
+            $mail->Subject = $asunto;
+            $mail->msgHTML($mensaje);
+            if (!$mail->send()) {
+                header('Location: amigos.php');
+            } else {
+                header('Location: index.php');
+            }
+        }
 	}
 
 	$sitio = new LynxSpace;

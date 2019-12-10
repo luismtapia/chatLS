@@ -17,10 +17,16 @@
 		$data = $_POST;
 		$data['id_usuario'] = $id_usuario;
 		$sitio->editar_perfil($data);
+		//print_r($data);
 		die();
 	}
 	$data = $sitio->persona($id_usuario);
 	$foto=$data['foto'];
+	$fecha=$data['nacimiento'];
+	$anio=substr($fecha, 0, 4);
+	$el_mes=substr($fecha, 5, 2);
+	$dia=substr($fecha, 8, 2);
+//	print_r($data);
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,91 +38,14 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="http://www.clubdesign.at/floatlabels.js"></script>
+
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="css/cajas.css">
 </head>
 <body>
 	<div class="container">
 		<?php include 'menu.php'; ?>
-		<!--
-		<div class="row">
-	      	<div class="col-sm-12">
-	      		<h1>Perfil</h1>
-	      		<form method="POST" action="editar_perfil.php" enctype="multipart/form-data">
-	      			<div class="form-row">
-						<div class="form-group col-md-6">
-						    <label>Nombre/s</label>
-						    <input type="text" class="form-control" placeholder="Nombre/s" name="nombre" value="<?php echo $data['nombre']; ?>">
-						</div>
-						<div class="form-group col-md-6">
-						    <label for="inputPassword4">Apellidos</label>
-				   	        <input type="text" class="form-control" placeholder="Apellidos" name="apellidos" value="<?php echo $data['apellidos']; ?>">
-					    </div>
-					</div>
-					<div class="form-group">
-					    <label>Apodo</label>
-					    <input type="text" class="form-control" placeholder="Apodo" name="apodo" value="<?php echo $data['apodo']; ?>">
-					</div>
-					<div class="form-group">
-					    <label>Fecha de Nacimiento</label>
-					    <br />
-					    <div class="form-group col-md-4">
-					    	<select name="dia" class="form-control">
-							<?php
-								for ($i = 1; $i < 32 ; $i++) {
-									echo "<option value = '$i'>$i</option>";
-								}
-							?>
-							</select>
-						</div>
-						<div class="form-group col-md-4">
-							<select name="mes" class="form-control">
-								<?php
-									foreach ($meses as $value => $mes) {
-										echo "<option value='$value'>$mes</option>";
-									}
-								?>
-							</select>
-						</div>
-						<div class="form-group col-md-4">
-							<select name="anio" class="form-control">
-								<?php
-									for ($i = (int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) {
-										echo "<option value = '$i'>$i</option>";
-									}
-								?>
-							</select>
-					    </div>
-					</div>
-					<div class="form-group">
-					    <label>Foto de Perfil</label>
-					    <input type="file" class="form-control" name="foto" >
-					</div>
-					<div class="form-group">
-					    <label>Email</label>
-					    <input type="email" class="form-control" placeholder="E-mail" name="email" value="<?php echo $data['email']; ?>">
-					</div>
-					<div class="form-group">
-					    <label>Contraseña</label>
-					    <input type="password" class="form-control" placeholder="Contraseña" name="contrasena">
-					</div>
-					<input type="submit" name="actualizar" value="Actualizar" class="btn btn-primary btn-lg btn-block"/>
-	    		</form>
-	    		</br>
-	    		<hr class="my-4">
-	    		<a href="perfil.php?accion=eliminar" class="btn btn-danger">Eliminar mi cuenta.</a>
-	    		</br>
-	    		</br>
-	    	</div>
-	    </div>
-		-->
 	</div>
-
-
-
-
-
 
 
     	<div class="cajas">
@@ -174,21 +103,24 @@
 	    				      	<select name="dia" id="dia">
 	        							<?php
 	        								for ($i = 1; $i < 32 ; $i++) {
-	        									echo "<option value = '$i'>$i</option>";
+														echo ($dia==$i) ? "<option value = '$i' selected>$i</option>":"<option value = '$i'>$i</option>";
+	        									//echo "<option value = '$i'>$i</option>";
 	        								}
 	        							?>
 	        						</select>
 	        						<select name="mes">
 	        							<?php
 	        								foreach ($meses as $value => $mes) {
-	        									echo "<option value='$value'>$mes</option>";
+														echo ($el_mes==$value) ? "<option value='$value' selected>$mes</option>":"<option value='$value'>$mes</option>";
+	        									//echo "<option value='$value'>$mes</option>";
 	        								}
 	        							?>
 	        						</select>
 	        						<select name="anio">
 	        							<?php
 	        								for ($i = (int)(date('Y'))-70; $i < (int)(date('Y'))-17; $i++) {
-	        									echo "<option value = '$i'>$i</option>";
+														echo ($anio==$i) ? "<option value = '$i' selected>$i</option>":"<option value = '$i'>$i</option>";
+	        									//echo "<option value = '$i'>$i</option>";
 	        								}
 	        							?>
 	        						</select>

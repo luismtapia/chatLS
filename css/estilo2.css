@@ -88,3 +88,7 @@ body{
   display: flex;
   justify-content: center;
 }
+
+.color_verde{
+	background-color: #1B603C;
+}

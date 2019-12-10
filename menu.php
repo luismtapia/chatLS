@@ -1,6 +1,6 @@
 <div class="row">
 			<div class="col-sm-12">
-				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008080;">
+				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #4CAF50;">
 				  	<a href="index.php"><img src="image/Logo.png" style="margin-left: 30px;" alt="logo"></a>
 					<div class="collapse navbar-collapse" id="navbarColor01" style="margin-right: 90px;">
 				    	<ul class="navbar-nav ml-auto" style="font-size: 17px;">
