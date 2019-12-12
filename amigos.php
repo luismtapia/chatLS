@@ -13,9 +13,8 @@
                 header("Location: amigos.php");
             break;
             case 'historial':
-                //$sitio->eliminar_amigo($_GET['id_persona']);
-                //header("Location: amigos.php");// ver historial
-            header("Location: historial.php");
+                $id_persona = $_GET['id_persona'];
+                header("Location: historial.php?id_amigo=$id_persona");
             default:
             break;
         }

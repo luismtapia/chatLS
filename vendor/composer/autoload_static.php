@@ -4,12 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3a69aaa396523a319dad45f8413c62dd
+class ComposerStaticInit653829cfdac1d64da6f7183bb42dd66d
 {
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
             'Spipu\\Html2Pdf\\' => 15,
+        ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
     );
 
@@ -17,6 +21,10 @@ class ComposerStaticInit3a69aaa396523a319dad45f8413c62dd
         'Spipu\\Html2Pdf\\' => 
         array (
             0 => __DIR__ . '/..' . '/spipu/html2pdf/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
     );
 
@@ -40,9 +48,9 @@ class ComposerStaticInit3a69aaa396523a319dad45f8413c62dd
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3a69aaa396523a319dad45f8413c62dd::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3a69aaa396523a319dad45f8413c62dd::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit3a69aaa396523a319dad45f8413c62dd::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit653829cfdac1d64da6f7183bb42dd66d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit653829cfdac1d64da6f7183bb42dd66d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit653829cfdac1d64da6f7183bb42dd66d::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -2,6 +2,7 @@
     session_start();
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
 
 	class LynxSpace{
 		var $conexion = null;
@@ -201,7 +202,7 @@
                                 $this->conexion->beginTransaction();
                                 $fecha=$this->fecha($data['dia'],$data['mes'],$data['anio']);
                                 try {
-                                    $sql="UPDATE persona
+                                    $sql="UPDATE usuario
                                     SET email=:email,contrasena=:contrasena where id_usuario=:id_usuario";
                                     $sentencia=$this->conexion->prepare($sql);
                                     $contrasena=md5($data['contrasena']);
@@ -681,26 +682,93 @@
         }
 
         function correoAmistad($destino, $mensaje, $asunto, $nombre){
+            // Load Composer's autoloader
             require 'vendor/autoload.php';
-            $mail = new PHPMailer;
-            $mail->isSMTP();
-            $mail->SMTPDebug = SMTP::DEBUG_OFF;
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = 587;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->SMTPAuth = true;
-            $mail->Username = '14030706@itcelaya.edu.mx';//de donde se manda
-            $mail->Password = 'svirus94';//contraseña
-            $mail->setFrom('14030706@itcelaya.edu.mx', 'Lynx-Space');//quien manda
-            $mail->addAddress($destino, $nombre);
-            $mail->Subject = $asunto;
-            $mail->msgHTML($mensaje);
-            if (!$mail->send()) {
+
+            // Instantiation and passing `true` enables exceptions
+            $mail = new PHPMailer(true);
+
+            try {
+                //Server settings
+                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+                $mail->SMTPDebug = SMTP::DEBUG_OFF;
+                $mail->isSMTP();                                            // Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                $mail->Username   = '14030637@itcelaya.edu.mx';                     // SMTP username
+                $mail->Password   = 'Nair1995';                               // SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+                $mail->Port       = 587;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('14030637@itcelaya.edu.mx', 'Miroslava');
+                $mail->addAddress($destino, $nombre);
+                //$mail->addAddress('14030598@itcelaya.edu.mx', 'Tapia');     // Add a recipient
+                $mail->addAddress('14030637@itcelaya.edu.mx');               // Name is optional
+                $mail->addReplyTo('14030637@itcelaya.edu.mx', 'admin');
+                $mail->addCC('nairflores1995@gmail.com', 'con copia a:');
+                //$mail->addBCC('bcc@example.com');
+
+                // Attachments
+                //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+                // Content
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = $asunto;
+                $mail->Body    = $mensaje;
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                $mail->send();
+                echo 'Message has been sent';
                 header('Location: amigos.php');
-            } else {
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 header('Location: index.php');
             }
         }
+
+        function historiaPDF($id_amigo){
+            $this->conexion();
+            //$sql = 'SELECT * FROM persona INNER JOIN amistad ON persona.id_persona = amistad.id_persona INNER JOIN persona ON amistad.id_amigo = persona.id_persona INNER JOIN mensaje ON persona.id_persona = mensaje.id_persona WHERE id_persona = :id_persona AND id_amigo = :id_amigo';
+            //$sql = 'SELECT * from mensaje m inner join amistad a on m.id_persona = a.id_persona inner join persona p on a.id_persona = p.id_persona where p.id_persona = :id_persona and a.id_amigo = :id_amigo';
+            $sql = 'SELECT m.mensaje,m.fecha from mensaje m inner join amistad a on m.id_persona = a.id_persona inner join persona p on a.id_persona = p.id_persona where p.id_persona = :id_persona and a.id_amigo = :id_amigo';
+            $sentencia=$this->conexion->prepare($sql);
+            $sentencia->bindParam(':id_persona', $_SESSION['id_persona']);
+            $sentencia->bindParam(':id_amigo', $id_amigo);
+            $sentencia->execute();
+            $datos = array();
+            $i = 0;
+            while ($fila = $sentencia->fetch()) {
+                
+                //$datos[$fila["id_persona"]]["id_persona"] = $fila["id_persona"];
+                //$datos[$fila["id_persona"]]["nombre"] = $fila["nombre"];
+                //$datos[$fila["id_persona"]]["id_mensaje"] = $fila["id_mensaje"];
+                //$datos[$fila["id_persona"]]["mensaje"] = $fila["mensaje"];
+                //$datos[$fila["id_amigo"]]["id_amigo"] = $fila["id_amigo"];
+                //$datos[$fila["id_amigo"]]["nombre"] = $fila["nombre"];
+                //$datos[$fila["id_amigo"]]["id_mensaje"] = $fila["id_mensaje"];
+                //$datos[$fila["id_amigo"]]["mensaje"] = $fila["mensaje"];
+                $datos[$i]["mensaje"]=$fila["mensaje"];
+                $datos[$i]["fecha"]=$fila["fecha"];
+                $i++;
+            }
+            return $datos;
+        }
+
+        function getYO($id_persona){
+             $this->conexion();
+             $datos=array();
+             $query="SELECT * from persona where id_persona = :id_persona";
+             $statement=$this->conexion->prepare($query);
+             $statement->bindParam(':id_persona', $id_persona);
+             $resultado=$statement->execute();
+             while ($fila=$statement->fetch(PDO::FETCH_ASSOC)) {
+                array_push($datos, $fila);
+             }
+             return $datos;
+        }
+
 	}
 
 	$sitio = new LynxSpace;
